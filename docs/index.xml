@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Reuben Cleetus</title>
+    <link>https://reuben.cleet.us/</link>
+    <description>Recent content in Home on Reuben Cleetus</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>https://reuben.cleet.us/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/about/</guid>
+      <description>&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;I&amp;rsquo;m a technologist focused on artificial intelligence, software systems, and building practical tools that actually get used. My work sits at the intersection of modern AI, product engineering, and real-world problem solving.&lt;/p&gt;&#xA;&lt;p&gt;I&amp;rsquo;ve spent my time learning by building: experimenting with models, shipping software, studying how systems scale, and figuring out what makes technology valuable outside of demos and hype.&lt;/p&gt;&#xA;&lt;p&gt;This site is where I think in public about what I&amp;rsquo;m learning, what I&amp;rsquo;m building, and where I think AI and software are heading.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Contact</title>
+      <link>https://reuben.cleet.us/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/contact/</guid>
+      <description>&lt;p&gt;The best way to reach me is via email or LinkedIn.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Email:&lt;/strong&gt; &lt;a href=&#34;mailto:reuben@cleet.us&#34;&gt;reuben@cleet.us&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;LinkedIn:&lt;/strong&gt; &lt;a href=&#34;https://linkedin.com/in/reubencleetus&#34;&gt;linkedin.com/in/reubencleetus&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+  </channel>
+</rss>

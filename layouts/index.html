@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>Reuben Cleetus</h1>
+  <p class="tagline">{{ .Site.Params.tagline }}</p>
+  <div class="intro">
+    {{ .Content }}
+  </div>
+  <div class="hero-links">
+    <a href="/about/" class="btn btn-primary">About Me</a>
+    <a href="/blog/" class="btn btn-outline">Read the Blog</a>
+  </div>
+</section>
+{{ end }}
