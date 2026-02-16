@@ -7,7 +7,7 @@ publishDir = "docs"
   tagline = "AI Leader. Technologist. Advisor."
   description = "Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise."
   email = "reuben@cleet.us"
-  linkedin = "https://linkedin.com/in/reubencleetus"
+  linkedin = "https://www.linkedin.com/in/rcleetus/"
 
 [menus]
   [[menus.main]]
