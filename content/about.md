@@ -17,6 +17,10 @@ This site is where I think in public about what I'm learning, what I'm building,
 - **Product Thinking** — Turning technical ideas into usable products. Focusing on usability, iteration, and feedback loops.
 - **Learning in Public** — Writing to sharpen thinking, document mistakes, and share useful patterns with others.
 
+## Book
+
+My book [*Scaling AI: The Strategic Playbook for Enterprise Transformation*](https://www.amazon.com/Scaling-AI-Strategic-Enterprise-Transformation/dp/B0FF7JPZ1M) draws on leadership experience across big tech, startups, global manufacturing, and energy. It covers what it actually takes to move AI past pilots and into production — including the organizational gridlock, data silos, and cultural shifts that most technical guides skip over.
+
 ## Philosophy
 
 I believe good technology starts with understanding the problem, not the tool.
