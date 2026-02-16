@@ -5,9 +5,24 @@
   <div class="intro">
     {{ .Content }}
   </div>
-  <div class="hero-links">
-    <a href="/about/" class="btn btn-primary">About Me</a>
-    <a href="/blog/" class="btn btn-outline">Read the Blog</a>
-  </div>
 </section>
+
+{{ $posts := where .Site.RegularPages "Section" "blog" }}
+{{ if $posts }}
+<section class="recent-posts">
+  <h2>Recent posts</h2>
+  <ul class="post-list">
+    {{ range first 5 $posts }}
+    <li class="post-item">
+      <span class="post-date">{{ .Date.Format "2006-01-02" }}</span>
+      <h3 class="post-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+      {{ with .Params.summary }}<p class="post-summary">{{ . }}</p>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  {{ if gt (len $posts) 5 }}
+  <p class="all-posts-link"><a href="/blog/">All posts →</a></p>
+  {{ end }}
+</section>
+{{ end }}
 {{ end }}

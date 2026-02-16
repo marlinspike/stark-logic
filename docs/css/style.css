@@ -257,6 +257,23 @@ img {
   color: var(--text-muted);
 }
 
+/* Recent posts on homepage */
+.recent-posts {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.recent-posts h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.all-posts-link {
+  margin-top: 1rem;
+}
+
 /* Footer */
 .footer {
   border-top: 1px solid var(--border);
