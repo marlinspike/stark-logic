@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VSCode Was Built for the Agentic Age Before It Existed | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>VSCode Was Built for the Agentic Age Before It Existed</h1>
+    
+      
+        <p class="post-date">February 16, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>I&rsquo;ve been thinking about why VSCode became <em>the</em> editor for AI-powered development. It wasn&rsquo;t luck, and it wasn&rsquo;t because Microsoft slapped Copilot onto it. The real answer goes back to architectural decisions made years before anyone was talking about AI agents.</p>
+<p>Those decisions created an editor that&rsquo;s protocol-driven and process-isolated. That, it turns out, is exactly what you need when autonomous agents start writing code on your behalf.</p>
+<h2 id="the-protocol-decisions">The protocol decisions</h2>
+<p>In 2016, Microsoft, Red Hat, and Codenvy announced the Language Server Protocol. The idea was simple: separate language intelligence from the editor.</p>
+<p>Before LSP, every editor had to build its own support for every language. Want Go autocompletion in Sublime? Someone had to write a Sublime-specific Go plugin. Want the same thing in Atom? Start over. The result was an M×N problem, M editors times N languages, each requiring a custom integration.</p>
+<p>LSP turned that into M+N. Build one language server for Go, and it works in any editor that speaks the protocol. Build one editor that speaks LSP, and it gets intelligence for any language that has a server.</p>
+<p>The Debug Adapter Protocol did the same thing for debugging. One abstract protocol between the editor&rsquo;s debug UI and whatever runtime you&rsquo;re targeting. Write a debug adapter for Python once, and any DAP-compatible editor can use it.</p>
+<p>What&rsquo;s worth paying attention to here isn&rsquo;t the protocols themselves. It&rsquo;s the <em>pattern</em>. Microsoft bet that the right architecture was one where the editor is a thin client that talks to smart backends through standardized interfaces. The editor doesn&rsquo;t need to know how Go works. It just needs to know how to send and receive LSP messages.</p>
+<p>That pattern aged remarkably well.</p>
+<h2 id="mcp-is-the-sequel">MCP is the sequel</h2>
+<p>When Anthropic released the Model Context Protocol in November 2024, the LSP influence was explicit. MCP&rsquo;s own documentation cites LSP as inspiration. The structural parallel is hard to miss: where LSP standardized how editors talk to language servers, MCP standardizes how AI models talk to external tools and data sources.</p>
+<p>Both protocols use JSON-RPC. Both solve an M×N integration problem by introducing a standard interface layer. Both are designed so that you build your integration once and it works across the ecosystem.</p>
+<p>But MCP extends the pattern in one important direction. LSP is fundamentally reactive. The editor sends a request (&ldquo;what are the completions at this cursor position?&rdquo;) and the language server responds. A human always initiates the interaction.</p>
+<p>MCP is built for agents that act on their own. An AI model using MCP can discover available tools, decide which ones to call, chain them together, and execute multi-step workflows without a human approving each step. The protocol supports the same composability as LSP, but for a world where the thing on the other end isn&rsquo;t a person. It&rsquo;s another program making decisions.</p>
+<p>Because VSCode had already internalized the &ldquo;thin client + protocol + smart backend&rdquo; pattern, MCP slotted in naturally. The architecture was waiting for it.</p>
+<h2 id="process-isolation-matters-when-agents-run-code">Process isolation matters when agents run code</h2>
+<p>The second architectural decision that aged well is process isolation.</p>
+<p>VSCode runs extensions in a dedicated Extension Host process, separate from the renderer. This wasn&rsquo;t always the case, and the migration was neither easy nor obvious. In November 2022, the VS Code team published a detailed post about migrating to process sandboxing, which required contributing a new utility process API to Electron itself.</p>
+<p>The result: each Extension Host runs in its own Node.js runtime. Communication between the extension host and the renderer happens through message passing. The renderer process operates in sandbox mode with no direct Node.js access, no direct file system access. If an extension needs system resources, it delegates to an unsandboxed process.</p>
+<p>This matters <em>a lot</em> when AI agents are running code.</p>
+<p>When Copilot&rsquo;s agent mode runs terminal commands or edits files, it&rsquo;s doing so through the extension host, not in the renderer where you&rsquo;re typing. There&rsquo;s a process boundary between what the agent does and what your editor does. If an agent goes sideways (runs a bad command, gets stuck in a loop, tries something unexpected) the process isolation means it can be killed without crashing your editor.</p>
+<p>I should be honest about the limits. The isolation isn&rsquo;t perfect. Within a single Extension Host process, all extensions share the same Node.js runtime, the same global state, the same <code>require()</code> cache. One extension can monkey-patch <code>fs</code> or <code>http</code> and affect every other extension in the same host. The Extension Host has the same OS-level permissions as VSCode itself. It can read files, make network requests, spawn child processes. So it&rsquo;s not a true sandbox in the security sense.</p>
+<p>But the <em>process-level</em> isolation between the Extension Host and the renderer is genuine and practically important. The core editing experience is protected from extension misbehavior. When those extensions are increasingly AI agents doing unpredictable things, that protection is worth having.</p>
+<h2 id="january-2026-the-multi-agent-editor">January 2026: the multi-agent editor</h2>
+<p>The January 2026 release of VS Code (v1.109) made the agentic architecture fully explicit. You can now run multiple subagents in parallel. Research authentication patterns while analyzing code structure while reviewing documentation, each handled by a different agent. You can mix providers (Claude, Codex, Copilot) from one interface. You can start agents locally for interactive work, or delegate to cloud agents for longer-running tasks.</p>
+<p>The underlying architecture is what makes this possible. VSCode already treated language intelligence, debugging, and extensions as separate processes communicating through protocols. Adding multiple AI agents was an extension of the existing pattern, not a rewrite.</p>
+<p>Compare this to editors that grew up monolithic. If your editor&rsquo;s intelligence layer is tightly coupled to the UI, if extensions run in the same process as the renderer, if there&rsquo;s no protocol abstraction between components, then bolting on agent orchestration means rearchitecting from scratch. VSCode didn&rsquo;t have to do that.</p>
+<h2 id="the-deeper-point">The deeper point</h2>
+<p>I keep coming back to something about this story that goes beyond VSCode.</p>
+<p>In 2016, nobody was thinking about AI agents when they designed LSP. They were thinking about the practical headache of supporting dozens of programming languages across multiple editors. The solution they chose, protocol-driven and decoupled, turned out to be the right foundation for a completely different use case that arrived a decade later.</p>
+<p>This is what good architecture actually looks like. You make the <em>structurally correct</em> decision for the problem in front of you, and trust that the right structure tends to accommodate things you didn&rsquo;t plan for.</p>
+<p>Protocol-driven beats monolithic. Process isolation beats shared-everything. These aren&rsquo;t abstract principles. They&rsquo;re bets about how the future works. And they tend to pay off precisely because the future is unpredictable, and flexible systems handle unpredictable futures better than rigid ones.</p>
+<p>Microsoft didn&rsquo;t build VSCode <em>for</em> the agentic age. They built it with principles that happened to be exactly what the agentic age required.</p>
+<h2 id="if-youre-building-tools">If you&rsquo;re building tools</h2>
+<p>If you&rsquo;re designing developer tools, or really any software that needs to survive contact with AI, a few things from the VSCode story are worth thinking about.</p>
+<p>Build protocols, not plugin APIs. Plugins couple you to a specific host. Protocols let any client talk to any server. When the clients change (and they will), the protocol survives.</p>
+<p>When something else is running code in your system, whether it&rsquo;s an extension or an agent, put a process boundary around it. The cost is some IPC overhead. The benefit is that failures stay contained.</p>
+<p>And take composability seriously. The ability to combine independent components matters more as the number of components grows. When it was just a handful of extensions, tight coupling was manageable. When it&rsquo;s multiple AI agents running in parallel, composability is the difference between a system that works and one that falls apart.</p>
+<p>The oldest technical decisions in your stack might be the most important ones. Worth figuring out which ones they are.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>

@@ -2,15 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://reuben.cleet.us/about/</loc>
-  </url><url>
     <loc>https://reuben.cleet.us/blog/</loc>
+    <lastmod>2026-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://reuben.cleet.us/</loc>
+    <lastmod>2026-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://reuben.cleet.us/blog/vscode-built-for-agentic-age/</loc>
+    <lastmod>2026-02-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://reuben.cleet.us/about/</loc>
   </url><url>
     <loc>https://reuben.cleet.us/categories/</loc>
   </url><url>
     <loc>https://reuben.cleet.us/contact/</loc>
-  </url><url>
-    <loc>https://reuben.cleet.us/</loc>
   </url><url>
     <loc>https://reuben.cleet.us/tags/</loc>
   </url>

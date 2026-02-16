@@ -61,6 +61,29 @@ This will:
 
 The post is created with `draft: true` so it won't appear on the live site yet.
 
+### Elaborate a LinkedIn post
+
+Drop a LinkedIn post (plain text file) into the `LIPosts/` folder, then run:
+
+```
+/elaborate_post <filename>
+```
+
+Example:
+
+```
+/elaborate_post fine-tuning
+```
+
+This will:
+1. Find the matching file in `LIPosts/` (supports partial filename matching)
+2. Analyze the LinkedIn post and identify key ideas to expand on
+3. Research each topic deeply for data, examples, and counterarguments
+4. Write a full 800-3000 word blog post that goes well beyond the original
+5. Run the humanizer skill to clean up AI writing patterns
+
+The LinkedIn post is the seed — the blog post digs deeper into *why* the ideas matter, adds evidence, and explores implications the short format couldn't cover.
+
 ### Preview a draft
 
 ```bash

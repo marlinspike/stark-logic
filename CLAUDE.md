@@ -53,6 +53,7 @@ Post body in Markdown.
 ## Claude Code commands
 
 - `/new_post <key ideas>` — Researches and writes a blog post as a draft (800-3000 words), then runs the humanizer skill to clean up AI patterns. Posts are elaborations on LinkedIn ideas.
+- `/elaborate_post <filename>` — Picks up a LinkedIn post from `LIPosts/`, researches the topics deeply, and expands it into a full blog post draft. Supports partial filename matching; prompts if multiple match.
 - `/publish_post <slug>` — Publishes a draft post. Supports partial slug matching; prompts if multiple match. One post at a time.
 
 ## Skills
