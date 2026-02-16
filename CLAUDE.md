@@ -7,6 +7,7 @@ Personal website for Reuben Cleetus at `reuben.cleet.us`. Built with Hugo, hoste
 - **Hugo static site** with a custom theme (no external theme dependency)
 - Dark theme, minimal design, mobile-first responsive
 - GitHub Pages serves from the `docs/` folder on `main` branch
+- Homepage shows recent blog posts below the intro
 
 ## Key paths
 
@@ -15,11 +16,14 @@ Personal website for Reuben Cleetus at `reuben.cleet.us`. Built with Hugo, hoste
 - `layouts/` — HTML templates (baseof, single, list, index, partials)
 - `static/css/style.css` — All styles
 - `static/CNAME` — Custom domain file for GitHub Pages
+- `static/.nojekyll` — Disables Jekyll processing on GitHub Pages
 - `docs/` — Built output (do not edit directly)
+- `LIPosts/` — LinkedIn posts to be elaborated into blog posts
 
 ## Commands
 
 - `hugo server` — Local dev server with live reload
+- `hugo server --buildDrafts` — Dev server including draft posts
 - `hugo` — Build site into `docs/`
 
 ## Workflow
@@ -32,7 +36,7 @@ Personal website for Reuben Cleetus at `reuben.cleet.us`. Built with Hugo, hoste
 ## Content structure
 
 - `content/_index.md` — Homepage intro text
-- `content/about.md` — About page
+- `content/about.md` — About page (background, areas of focus, book, philosophy)
 - `content/contact.md` — Contact info
 - `content/blog/_index.md` — Blog listing
 - `content/blog/*.md` — Individual blog posts
@@ -58,7 +62,7 @@ Post body in Markdown.
 
 ## Skills
 
-- `humanizer` — Installed at `.claude/skills/humanizer`. Detects and removes AI writing patterns. Used automatically by `/new_post`.
+- `humanizer` — Installed at `.claude/skills/humanizer`. Detects and removes AI writing patterns. Used automatically by `/new_post` and `/elaborate_post`.
 
 ## Design
 
