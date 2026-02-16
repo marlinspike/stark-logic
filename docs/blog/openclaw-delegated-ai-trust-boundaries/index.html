@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenClaw and the Shift from Chat to Delegation | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>OpenClaw and the Shift from Chat to Delegation</h1>
+    
+      
+        <p class="post-date">February 5, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>I installed OpenClaw expecting a weekend rabbit hole. Tinker with it for a few hours, maybe automate a small task, move on. What actually happened was different. Within the first stretch of working with it, I had it doing real work asynchronously. Not &ldquo;answer my question&rdquo; work. Actual tasks I&rsquo;d otherwise have to shepherd step by step.</p>
+<p>That shift, from chat to delegation, is the thing worth paying attention to.</p>
+<h2 id="what-changed">What changed</h2>
+<p>Most AI tools I&rsquo;ve used follow the same loop. You type a prompt, get a response, refine it, paste output somewhere, run the next step. The human is the orchestrator. You&rsquo;re managing the event loop manually, and if you walk away, nothing happens.</p>
+<p>OpenClaw breaks that pattern. You hand it a task and go do something else. It plans, executes, hits errors, adjusts, reports back. The interaction model is closer to assigning work to a junior colleague than chatting with a bot.</p>
+<p>The interface choice reinforces this. OpenClaw doesn&rsquo;t live behind its own UI. It plugs into the messaging apps you already use: Telegram, WhatsApp, Signal, Slack. I run mine through Telegram. That means I can message it from my phone while I&rsquo;m away from my desk. &ldquo;What did I decide about that architecture last week?&rdquo; or &ldquo;Pull together the notes from Tuesday&rsquo;s meeting.&rdquo; Because I take a lot of notes, it can actually work with what I have lying around. Notes stop feeling like a graveyard and start feeling like an asset.</p>
+<p>The fact that it lives in a messaging app means the interaction cost drops to near zero. No context switch, no opening a separate tool. It just sits in the flow of how I already communicate.</p>
+<h2 id="memory-is-what-makes-delegation-work">Memory is what makes delegation work</h2>
+<p>The deeper pattern here is memory. Most coding agents have what I&rsquo;d call session amnesia. You burn through tokens, build up context, hit a wall or a timeout, start a fresh chat, and everything you built up is gone. Continuity becomes a discipline you force on the tool rather than something it provides.</p>
+<p>OpenClaw handles this differently. It maintains state across sessions. It picks up habits. It remembers what you told it last week. When it hits a problem it can&rsquo;t solve with its existing capabilities, it can write code to extend itself, what OpenClaw calls &ldquo;skills.&rdquo; Sometimes that skill is a small script. Sometimes it&rsquo;s a full integration.</p>
+<p>This matters because useful delegation requires memory. If you have to re-explain context every time you talk to an agent, you haven&rsquo;t delegated anything. You&rsquo;ve just added a middleman. The value comes when the agent accumulates understanding over time, the same way a good colleague does.</p>
+<p>The memory architecture underneath is still evolving. Vector databases for semantic retrieval, structured state for facts that need to be authoritative, summarization for keeping context windows from blowing up. Each approach has tradeoffs. Carry too much context forward and the model gets distracted. Carry too little and it loses coherence. Get a bad fact into the summary and it poisons future behavior.</p>
+<p>These are real engineering problems, not solved ones. But even now, the difference between an agent with persistent memory and one without is stark. One feels like a tool you use. The other starts to feel like a system you work with.</p>
+<h2 id="the-security-problem-is-real">The security problem is real</h2>
+<p>Here&rsquo;s where I stop being optimistic and start being careful.</p>
+<p>OpenClaw&rsquo;s own security documentation is blunt about the threat model. If you give an agent the ability to run shell commands, read files, and send messages, you have created a new privileged surface area. This isn&rsquo;t theoretical. It&rsquo;s the actual architecture.</p>
+<p>Snyk&rsquo;s security research in February 2026 put concrete numbers on the problem. They audited 3,984 skills from ClawHub (OpenClaw&rsquo;s skill registry) and found 76 confirmed malicious payloads designed for credential theft, backdoor installation, and data exfiltration. 283 skills, about 7% of the registry, contained critical security flaws that expose sensitive credentials. 91% of the malicious skills included prompt injection, a technique that manipulates the AI agent itself into sharing data or running commands it shouldn&rsquo;t.</p>
+<p>If you installed a random ClawHub skill in the past month, there was roughly a 1-in-8 chance it contained a serious security flaw.</p>
+<p>This is the npm supply chain problem all over again, except worse. A compromised npm package can run code in your build pipeline. A compromised OpenClaw skill can run code <em>and</em> read your files <em>and</em> send messages on your behalf <em>and</em> access whatever credentials you&rsquo;ve shared with the agent. The permissions are just wider.</p>
+<p>Snyk also documented the first coordinated malware campaign targeting OpenClaw users, with 30+ malicious skills distributed through ClawHub specifically designed to exfiltrate data. This already happened.</p>
+<h2 id="how-i-actually-run-it">How I actually run it</h2>
+<p>Given all that, here&rsquo;s my setup. I treat OpenClaw like a powerful machine that I&rsquo;ve invited into my house, and I&rsquo;m careful about which rooms it can access.</p>
+<p>It runs on a dedicated Mac Mini, separate from my primary workstation and away from my password manager, crypto wallet, and primary email. A box with limited access and nothing worth stealing.</p>
+<p>The credentials it has are minimal. A couple of shared passwords for specific services, access to Claude as its LLM backend, and not much else. If it needs more, that&rsquo;s an explicit decision, usually another API key or access to a specific data source. Each expansion of trust is deliberate.</p>
+<p>I run it with sandboxing enabled. OpenClaw supports Docker-based tool sandboxing, where each agent&rsquo;s tools run in an isolated container with no access to the host filesystem by default. The sandbox workspace lives under <code>~/.openclaw/sandboxes</code>, separate from anything important.</p>
+<p>Network isolation matters too. The Mac Mini sits on its own network segment. If OpenClaw gets compromised, the damage is contained to a machine with nothing valuable on it.</p>
+<p>A friend of mine has his OpenClaw checking him in for flights automatically. I&rsquo;m not that brave yet. The gap between &ldquo;this is cool&rdquo; and &ldquo;I trust this with my airline credentials&rdquo; is wide for me. Maybe I&rsquo;ll get there. But trust with autonomous agents should be earned incrementally, not granted upfront.</p>
+<h2 id="where-this-is-going">Where this is going</h2>
+<p>What I take from all of this is mostly optimistic, but with caveats.</p>
+<p>We&rsquo;re finally getting AI tools that feel less like chat and more like delegated execution. The interaction model is shifting from &ldquo;I talk to a bot&rdquo; to &ldquo;I assign work to an agent.&rdquo; That matters. It&rsquo;s closer to having a capable, if sometimes unpredictable, assistant than having a fancy autocomplete.</p>
+<p>But the security implications aren&rsquo;t something you bolt on later. Every capability you give an agent is a capability that can be exploited. The ClawHub numbers make this concrete: a 7% rate of critical flaws in a public skill registry is not an edge case. It&rsquo;s a systemic problem that the ecosystem needs to solve before this scales further.</p>
+<p>The right mental model is progressive trust. Minimal permissions to start. Isolated hardware. Expand access deliberately, one capability at a time, as you build confidence. Watch what it does. Keep logs.</p>
+<p>This applies to all autonomous agents, not just OpenClaw. The pattern will repeat with every agent framework that gains traction. The tools will get more capable. The security surface will get larger. And the people who treat trust boundaries as an afterthought will be the ones reading about their credentials on a security research blog.</p>
+<p>I&rsquo;d rather be the one reading the research than the one featured in it.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>

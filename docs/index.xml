@@ -16,6 +16,20 @@
       <description>The architectural decisions Microsoft made in VSCode between 2016 and 2022 accidentally created the perfect foundation for AI agents. Here&amp;rsquo;s why those decisions mattered more than anyone predicted.</description>
     </item>
     <item>
+      <title>OpenClaw and the Shift from Chat to Delegation</title>
+      <link>https://reuben.cleet.us/blog/openclaw-delegated-ai-trust-boundaries/</link>
+      <pubDate>Thu, 05 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/openclaw-delegated-ai-trust-boundaries/</guid>
+      <description>I installed OpenClaw expecting a weekend experiment. What I found was something closer to delegated execution, and a clear lesson in why trust boundaries matter when your AI agent has shell access.</description>
+    </item>
+    <item>
+      <title>From AI Pilot to Operating Model</title>
+      <link>https://reuben.cleet.us/blog/from-pilot-to-operating-model/</link>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/from-pilot-to-operating-model/</guid>
+      <description>88% of AI pilots never reach production. The ones that do share a pattern: they rebuild workflows from scratch instead of automating the old ones, and they treat the cultural shift as the actual work.</description>
+    </item>
+    <item>
       <title>About</title>
       <link>https://reuben.cleet.us/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
