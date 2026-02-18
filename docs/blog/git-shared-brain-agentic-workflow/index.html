@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSZ056G71K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CSZ056G71K');
+</script>
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</h1>
+    
+      
+        <p class="post-date">February 18, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>My dev workflow now involves at least two AI agents and no context cliff. One runs on my phone. One runs at my terminal. They&rsquo;ve never had a conversation with each other, and they don&rsquo;t need to.</p>
+<p>The standard mental model for multi-agent coordination is wrong. Most people assume agents need shared memory, shared context, or some kind of message-passing infrastructure. They don&rsquo;t. They need shared durable artifacts.</p>
+<h2 id="the-context-cliff-problem">The context cliff problem</h2>
+<p>When you work with an AI coding agent long enough, you hit the context cliff. The conversation grows stale. The agent starts to hallucinate, not because it&rsquo;s broken, but because you&rsquo;ve pushed past the edge of what it can reliably attend to. It loses track of decisions made an hour ago, why certain files are structured the way they are, what was tried and abandoned.</p>
+<p>This isn&rsquo;t just subjective experience. A Stanford study by Nelson Liu et al. (later published in the <em>Transactions of the Association for Computational Linguistics</em>) found that language models systematically perform worse when relevant information sits in the middle of a long context, even when that information technically fits. Chroma Research replicated this in 2025 across 18 models, including GPT-4.1, Claude 4, and Gemini 2.5, and found every single one showed measurable performance degradation as context length grew. They named the phenomenon &ldquo;context rot.&rdquo;</p>
+<p>The obvious response is to keep the context window fresh: start new sessions, summarize aggressively, use memory systems. But these are patches. They fix the symptom rather than the architecture.</p>
+<p>The harder question is: what is context actually for? When an agent reads a file, why does it need to know <em>why</em> the file exists? What decisions shaped it? What alternatives were rejected? Usually that information lives in the conversation history. And conversation history doesn&rsquo;t persist.</p>
+<p>But code does. Tests do. Commits do. Documentation does.</p>
+<h2 id="stateless-persistence">Stateless persistence</h2>
+<p>Here&rsquo;s the reframe I&rsquo;ve landed on: agents don&rsquo;t need shared conversation history if they share durable artifacts.</p>
+<p>The repository already carries most of what an agent needs to reconstruct intent. The code itself encodes decisions. Tests encode expected behavior. Commit messages encode why changes were made. A <code>PLAN.md</code> encodes where things are headed. An <code>ARCHITECTURE.md</code> explains what patterns to follow and why.</p>
+<p>I call this <em>stateless persistence</em>. The agents themselves are stateless; each session starts fresh, with no memory of the previous one. But persistence lives in the repo. Every commit is a checkpoint. Every diff is runnable context. Git becomes the shared working memory neither agent has on its own.</p>
+<p>So instead of asking &ldquo;how do I keep context alive across sessions,&rdquo; the question becomes &ldquo;how do I make the repository complete enough that any agent can pick it up cold?&rdquo;</p>
+<p>Anthropic&rsquo;s own engineering team arrived at the same place. In a November 2025 post on long-running agent workflows, they documented a pattern using two agent roles: an initializer that creates a structured <code>claude-progress.txt</code> file on first run, and a coding agent that reads that file plus the git history in each subsequent session to reconstruct where things stand. No transcript sharing. No context summarization. Git history plus one plain-text state file.</p>
+<h2 id="the-workflow-in-practice">The workflow in practice</h2>
+<p>My setup uses two agents across two surfaces.</p>
+<p>On my phone, I use OpenClaw via Telegram. OpenClaw (built by Peter Steinberger, who recently joined OpenAI to lead personal agent development) is an open-source AI agent gateway that connects AI models to messaging platforms. Steinberger made over 6,600 commits using his own agent in January 2026 alone, a single engineer shipping at team-scale throughput via Telegram commands. On mobile, it handles planning, task breakdown, and feature work. It writes tests, runs them, updates documentation, and won&rsquo;t commit until tests pass. When it&rsquo;s ready to push, it asks for my approval. I can review the diff on my phone, approve or reject, and move on.</p>
+<p>At my terminal, Claude Code picks up exactly where OpenClaw left off, not because I pasted a transcript or summarized the session, but because the repository holds the state. The tests are there. The commit history is there. The planning doc is there. Claude Code reads the repo and has everything it needs.</p>
+<p>What&rsquo;s interesting is that neither agent knows about the other. There&rsquo;s no agent-to-agent communication, no shared memory system, no orchestration layer. The coordination happens through the repository. Both agents read from and write to the same source of truth.</p>
+<h2 id="the-distributed-systems-parallel">The distributed systems parallel</h2>
+<p>This pattern has a name in distributed systems: event sourcing.</p>
+<p>In event sourcing, the system&rsquo;s state is never stored directly. Instead, you store an append-only log of events. Any component can reconstruct the current state by replaying the log. Components don&rsquo;t share memory; they share the event log.</p>
+<p>Git is an event log. Every commit is an immutable event. The current state of the codebase is always derivable from the commit history. Different agents (or humans) can independently reconstruct state by reading from the same log.</p>
+<p>The architectural consequence is that agent handoffs stop being a memory problem and start being a state transition problem. Memory problems scale badly: they require passing ever-larger contexts, summarizing and losing information, or building complex memory retrieval systems. State transition problems scale well; you just make sure each commit leaves the repo in a clean, self-describing state.</p>
+<p>This is why I&rsquo;m skeptical of approaches that try to solve the multi-agent coordination problem with vector databases, context stores, or shared memory layers. These are valuable in some contexts, but they add infrastructure to work around a constraint that a well-structured repository already solves.</p>
+<h2 id="radical-incrementalism-as-the-forcing-function">Radical incrementalism as the forcing function</h2>
+<p>The workflow only works if the repository stays in a state where agents can pick it up cold. That requires discipline I&rsquo;ve come to call <em>radical incrementalism</em>.</p>
+<p>The rules:</p>
+<ul>
+<li>Plan in a plain-text file that lives in the repo</li>
+<li>Implement one small piece at a time</li>
+<li>Write or update tests, and run them before committing</li>
+<li>Update documentation in the same commit as the code</li>
+<li>Keep push behind a human gate</li>
+</ul>
+<p>The last rule matters more than it looks. Requiring human approval to push isn&rsquo;t just a safety measure; it&rsquo;s an architectural constraint that forces proper increments. If an agent can push autonomously, it batches work, skips docs, merges untested changes. The approval gate means every push has to be reviewable, which means it has to be small and self-contained.</p>
+<p>The commit history is the recap. When I pick up the next session, on phone or terminal, I don&rsquo;t ask the agent to summarize what was done. I read the last few commits. They tell me exactly what changed, why, and what the next logical step is.</p>
+<p>The planning doc changes too. It&rsquo;s not a static requirements document; it&rsquo;s a living file that agents update as they work. When a feature is complete, they mark it done. When they deviate from the original plan, they note it. The planning file becomes a running record of intent, which is the most valuable context an agent can have.</p>
+<h2 id="scaling-beyond-small-projects">Scaling beyond small projects</h2>
+<p>The obvious question is whether this works at larger scale. It does, but the repository needs to carry more structure.</p>
+<p>On a small project, the code itself is usually readable enough that an agent can infer intent. On a larger project that breaks down. You need clear interfaces: well-defined module boundaries with documented contracts, because agents that can&rsquo;t reason about an interface can&rsquo;t safely modify code behind it. You need architecture notes, a file (I use <code>ARCHITECTURE.md</code>) that explains the key patterns and the reasons behind them. Why is this service structured as a pipeline? Why does this module avoid shared state? What&rsquo;s the preferred way to add a new handler? Without this, agents make locally reasonable but globally incoherent decisions. You need CI as the source of truth: automated tests and linting that run on every PR, with no direct pushes to main. If CI passes, the increment is good. If it fails, nothing merges. And you need PR gates instead of direct pushes, so that for larger teams, human or agent, pull requests force explicit review before changes enter the shared state.</p>
+<p>At that point, the repository stops being a folder of files and starts functioning as a coordination substrate, not just for the two agents in my personal workflow, but for any combination of agents and humans working on the codebase.</p>
+<h2 id="githubs-continuous-ai-as-validation">GitHub&rsquo;s Continuous AI as validation</h2>
+<p>GitHub&rsquo;s recently previewed Agentic Workflows framework makes the same architectural bet. It embeds AI agents directly into GitHub Actions, running Copilot, Claude, or Codex to triage issues, diagnose CI failures, maintain documentation, and review PRs. The agents operate in sandboxed containers, have read-only access by default, and route any write operations through explicit approval gates.</p>
+<p>GitHub calls this &ldquo;Continuous AI,&rdquo; framing it as the agentic evolution of continuous integration. The framing is accurate. CI works because the repository is the source of truth. Test results, build artifacts, deployment status are all attached to commits, not to individual developers&rsquo; sessions. Continuous AI works for the same reason: agents don&rsquo;t need persistent context if they have access to a complete, well-structured repository.</p>
+<p>It&rsquo;s a different bet than building purpose-built multi-agent memory systems. It assumes the existing infrastructure of version control, CI, and code review is already sufficient for agent coordination, if you&rsquo;re willing to treat the repository as a first-class artifact rather than just a place to store code.</p>
+<p>Thomas Dohmke, former GitHub CEO, is building a company called Entire on exactly this thesis. His first product, Checkpoints, records prompts, tool calls, and reasoning traces alongside each git commit, turning the commit history into a complete audit trail of both code and agent intent. The seed round closed at $60M, reportedly the largest in developer tools history. The bet is the same: the repository, not a separate memory layer, is where agent coordination lives.</p>
+<h2 id="what-changes">What changes</h2>
+<p>The practical shift isn&rsquo;t about technology. It&rsquo;s about discipline.</p>
+<p>Most developers, myself included until recently, treat the repository as an output. A place where finished work lands. The commit message is an afterthought. The docs are separate from the code. The planning doc doesn&rsquo;t exist.</p>
+<p>For agentic workflows to work well, the repository has to become an input. It has to be the medium through which intent is communicated, not just to collaborators, but to the agents doing the work.</p>
+<p>This means writing commit messages that explain why, not just what. Keeping a planning doc that lives in the repo and gets updated as the work evolves. Writing documentation in the same commit as the feature, not as a separate ticket. Structuring code so that the interfaces are self-explanatory and the architecture is legible.</p>
+<p>None of this is new advice. It&rsquo;s what good software engineering has always looked like. The difference is that with agents in the loop, the cost of not doing it is immediate: your agent loses the thread and starts guessing. The discipline that was previously nice-to-have becomes structural. And that turns out to be a decent argument for finally doing it right.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>

@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 16 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
+      <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
+      <pubDate>Wed, 18 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</guid>
+      <description>Running two AI coding agents across phone and terminal without losing context, and why Git is a better coordination layer than conversation history.</description>
+    </item>
     <item>
       <title>VSCode Was Built for the Agentic Age Before It Existed</title>
       <link>https://reuben.cleet.us/blog/vscode-built-for-agentic-age/</link>
