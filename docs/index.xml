@@ -6,8 +6,15 @@
     <description>Recent content in Home on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>An 18-Month ATO Doesn&#39;t Make Software Secure. Here&#39;s What Does.</title>
+      <link>https://reuben.cleet.us/blog/ato-security-theater-swift/</link>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/ato-security-theater-swift/</guid>
+      <description>The traditional DoD ATO process was sold as a security control. It was actually a snapshot, useful once and immediately aging. SWIFT changes the fundamental model, and the industry response tells you everything about how ready the field is.</description>
+    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>An 18-Month ATO Doesn&#39;t Make Software Secure. Here&#39;s What Does. | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSZ056G71K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CSZ056G71K');
+</script>
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>An 18-Month ATO Doesn&#39;t Make Software Secure. Here&#39;s What Does.</h1>
+    
+      
+        <p class="post-date">February 19, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>There&rsquo;s a phrase I&rsquo;ve heard repeated in DoD acquisition circles for years: &ldquo;We can&rsquo;t rush security.&rdquo; It was the implicit justification for an authorization process that could take 18 months and cost more than $3 million before a single line of code ran in production for the warfighter.</p>
+<p>Here&rsquo;s the problem with that framing. The traditional Authority to Operate process wasn&rsquo;t security. It was a photograph of security, accurate at the moment it was taken and degrading from that instant forward.</p>
+<p>Acting Pentagon CIO Katie Arrington put it more bluntly in 2025, calling the Risk Management Framework &ldquo;archaic&rdquo; and &ldquo;a bunch of paperwork.&rdquo; That&rsquo;s the kind of language you use when you&rsquo;ve watched a well-intentioned process calcify into something that protects the process more than the systems it was supposed to secure.</p>
+<h2 id="what-the-old-model-actually-did">What the old model actually did</h2>
+<p>The RMF-based ATO worked like this: a team of security assessors manually reviewed documentation, verified controls, and issued an authorization typically valid for one to three years. During that window, continuous monitoring was supposed to happen, but &ldquo;continuous&rdquo; often meant monthly scans, or quarterly ones, or whenever someone had cycles.</p>
+<p>The point-in-time problem is structural, not a failure of implementation. A system approved in January reflects the threat landscape, the dependency graph, and the configuration baseline of January. By March, three of your dependencies have published CVEs. By June, your container image is running a kernel version with a known privilege escalation. By the following January, when you&rsquo;re up for reauthorization, you&rsquo;ve been flying with an unknown attack surface for most of your authorization window.</p>
+<p>The Atlantic Council made exactly this diagnosis in its analysis of DoD&rsquo;s software approval process: one-time ATO reviews &ldquo;are not useful for tracking a system&rsquo;s long-term security posture&rdquo; and &ldquo;leaving a system approved for this long without further review increases its security risk.&rdquo; The security gate at the end of the process was never actually guarding the thing it claimed to guard.</p>
+<p>Meanwhile, software sat in what the defense acquisition community calls the &ldquo;valley of death,&rdquo; the 18 to 24 months between a working prototype and actual authorization for use. Warfighters operated on 30-year-old legacy systems while modern capabilities waited in queue.</p>
+<p>That&rsquo;s not a speed problem. That&rsquo;s a risk profile problem. The old model embedded risk by design.</p>
+<h2 id="what-swift-actually-changes">What SWIFT actually changes</h2>
+<p>On June 1, 2025, the DoD launched SWIFT (Software Fast Track) via Acting CIO Arrington&rsquo;s &ldquo;Accelerating Secure Software&rdquo; memo. The final framework and implementation plan were published at the end of July, following a 90-day sprint that collected more than 500 industry responses across three RFIs. The appetite for change was real.</p>
+<p>The shift is architectural, not just procedural.</p>
+<p>Instead of a manual checklist review conducted by an assessor team with a scheduling backlog, SWIFT uses AI (specifically large language model-based analysis) to scan source code for anomalies. If the system finds nothing concerning, a provisional ATO can be issued in hours. Arrington described the process directly: &ldquo;I have AI on the backside — large language modeling — that will determine if there are any anomalies, if there&rsquo;s something in your source code that&rsquo;s bad. If not, you get a provisional ATO.&rdquo;</p>
+<p>Compressing from 18 months to hours doesn&rsquo;t cut corners. It moves the security work from a periodic gate to a continuous function.</p>
+<p>The SBOM requirement is where things get concrete and technically demanding. SWIFT requires vendors to produce certified Software Bills of Materials for both sandbox and production environments, plus a third-party SBOM. All of it gets uploaded to eMASS (the DoD&rsquo;s Enterprise Mission Assurance Support Service) for automated review. The point is transparency: if I know exactly what components are running in your system at any given moment, I can correlate that against known vulnerabilities in near-real time rather than waiting for the next assessment cycle.</p>
+<p>This builds on, and ultimately supersedes, the cATO (Continuous ATO) framework the DoD CIO published guidance on in April 2024. The cATO model established three criteria: continuous monitoring of RMF controls, active cyber defense capability, and use of an approved DevSecOps reference design with a secure software supply chain. SWIFT takes those same principles and extends them further into the acquisition and authorization pipeline.</p>
+<h2 id="where-this-was-always-headed">Where this was always headed</h2>
+<p>I co-authored the DoD Enterprise DevSecOps Cloud Reference Design with the DoD CIO and my colleague Tim Meyers. Writing it, the direction was clear even then: security had to live in the pipeline, not at the end of it.</p>
+<p>The practical path we described is one teams can build toward right now. Use GitHub.com for IL2 development. Automate SBOM generation, vulnerability scanning, and configuration hardening directly in your CI/CD pipelines, not as a pre-deployment step but as continuous pipeline stages that run on every commit. Promote artifacts through IL2 to IL4 or IL5 environments using infrastructure-as-code and pre-hardened baselines. The authorization reflects your current posture because your pipeline is continuously asserting it.</p>
+<p>That&rsquo;s what &ldquo;security in the pipeline&rdquo; actually means. Not a scan you run before you submit your ATO package. A set of automated gates that your code passes through every time it moves.</p>
+<h2 id="the-hard-questions-swift-hasnt-fully-answered">The hard questions SWIFT hasn&rsquo;t fully answered</h2>
+<p>I want to be honest about where SWIFT is still incomplete, because the industry feedback was explicit about it.</p>
+<p>The biggest open question is attestation standardization. After analyzing more than 400 RFI responses, the SWFT Combined Summary found a consistent theme: vendors have no clear picture of what a valid attestation actually is. What evidence is required? How often does it need to be refreshed? Can vendors self-attest to NIST SP 800-218 compliance, or do they need a third-party assessment organization? The document acknowledged &ldquo;a strong call for the DoD to define a legitimate attestation, identify what is required to complete an attestation, and to ensure consistency of these standards.&rdquo;</p>
+<p>That&rsquo;s a significant gap for a process supposed to compress authorization timelines. If vendors don&rsquo;t know what evidence they need to produce, they can&rsquo;t build pipelines that produce it automatically.</p>
+<p>The SBOM accuracy question is real in a different way. Most SBOM tools generate their output from source code or package manifests. Source-code analysis can miss vulnerabilities in compiled artifacts, in the binary that actually runs rather than the source that produced it. Binary code analysis extracts a software inventory directly from compiled code, including firmware, and surfaces risks that manifest-based tools can&rsquo;t see. SWIFT&rsquo;s current framework doesn&rsquo;t fully resolve whether source-code SBOMs satisfy its transparency goals or whether binary analysis is required to validate them.</p>
+<p>Third-party assessor qualifications are also still being refined. The standards for who counts as a valid external verification body, what certifications and accreditations are required, were under active development as of mid-2025.</p>
+<p>These aren&rsquo;t reasons to dismiss SWIFT. They&rsquo;re the natural friction of replacing a decades-old process with something built for a different threat environment. The trajectory is right. The details need to catch up.</p>
+<h2 id="what-this-means-if-youre-building-for-dod-today">What this means if you&rsquo;re building for DoD today</h2>
+<p>SBOMs are no longer optional documentation. They&rsquo;re operational artifacts. Your pipeline should generate them automatically on every build and maintain them for both development and production environments. Third-party validation is likely to become a hard requirement, which means you need to know who your validating organization will be before you&rsquo;re staring at a deadline.</p>
+<p>The gap between source-code SBOMs and binary analysis is a real liability. Tools that only scan your package manifests will miss what&rsquo;s actually compiled into your artifacts. Building binary analysis into your pipeline now isn&rsquo;t premature; it&rsquo;s where the requirement is heading.</p>
+<p>Continuous monitoring is a development team responsibility built in from the first pipeline stage, not an operations team responsibility bolted on after deployment. If your CI/CD doesn&rsquo;t have automated security gates, you don&rsquo;t have security — you have the absence of a recent violation.</p>
+<p>And if you&rsquo;re still treating the ATO as something that happens at the end of a build cycle, you&rsquo;re optimizing for the wrong outcome. The new model measures your current posture, continuously. That&rsquo;s only possible if you&rsquo;ve been building for continuous posture from the start.</p>
+<h2 id="faster-is-more-secure">Faster is more secure</h2>
+<p>The phrase &ldquo;we can&rsquo;t rush security&rdquo; was always a misunderstanding of what the old ATO process was measuring. It measured documentation quality at a point in time. It was never measuring the security of a running system.</p>
+<p>SWIFT measures something different: whether your software, as it actually exists right now, passes automated analysis for known risks and supply chain integrity. That measurement is only useful if it&rsquo;s repeated continuously, and if it&rsquo;s automated, there&rsquo;s no reason it can&rsquo;t be.</p>
+<p>The framing I&rsquo;ll stand behind is the same one that informed the DevSecOps reference design: when security is built into the pipeline and validated continuously, faster is more secure. Not despite the speed. Because of it.</p>
+<p>The 18-month ATO was slow. It was also insecure. Those two things were not separate problems.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>

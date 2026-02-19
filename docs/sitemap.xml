@@ -2,13 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://reuben.cleet.us/blog/</loc>
-    <lastmod>2026-02-18T00:00:00+00:00</lastmod>
+    <loc>https://reuben.cleet.us/blog/ato-security-theater-swift/</loc>
+    <lastmod>2026-02-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</loc>
-    <lastmod>2026-02-18T00:00:00+00:00</lastmod>
+    <loc>https://reuben.cleet.us/blog/</loc>
+    <lastmod>2026-02-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://reuben.cleet.us/</loc>
+    <lastmod>2026-02-19T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</loc>
     <lastmod>2026-02-18T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://reuben.cleet.us/blog/vscode-built-for-agentic-age/</loc>
