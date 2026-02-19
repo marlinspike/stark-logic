@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stop Wiring Apps Together. Build a Domain Reasoning Layer Instead. | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSZ056G71K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CSZ056G71K');
+</script>
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>Stop Wiring Apps Together. Build a Domain Reasoning Layer Instead.</h1>
+    
+      
+        <p class="post-date">February 19, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>The teams I&rsquo;ve watched get the most out of AI function calling have something in common. They stopped thinking about which app to connect next and started thinking about what the model needs to reason across an entire domain.</p>
+<p>That&rsquo;s a different problem. And solving the right one changes what you build.</p>
+<h2 id="the-integration-layer-is-getting-a-reasoning-upgrade">The integration layer is getting a reasoning upgrade</h2>
+<p>For two decades, the standard answer to &ldquo;how do we connect our systems&rdquo; was some flavor of middleware (ESBs, workflow engines, message brokers). These tools moved data between systems by following rules someone wrote in advance. If this condition, call this endpoint. Route this message type to this queue. Logic defined explicitly, maintained by engineers, brittle when the world changed.</p>
+<p>Function calling gives the LLM the decision role that used to belong to those routing rules. The model receives a request, interprets intent, decides which tools to invoke, reasons over the results, and determines whether to call more tools or return an answer. That&rsquo;s not rule-based routing. It&rsquo;s contextual reasoning over a set of capabilities.</p>
+<p>The practical difference matters. A rule-based router fails when the request is ambiguous or slightly outside the defined cases. An LLM reasons through ambiguity. It can infer that a user asking &ldquo;what&rsquo;s the status of my order and can I change the delivery address&rdquo; needs two operations sequenced in a specific order, even if no one programmed that case explicitly.</p>
+<p>But this reasoning capability is only as good as the tools it reasons over. Which is where the domain question becomes critical.</p>
+<h2 id="why-app-by-app-fails">Why app-by-app fails</h2>
+<p>Most function calling implementations start the same way: pick an application, expose a few endpoints as functions, wire them up. The model can now do things in that app. Ship it.</p>
+<p>The problem is that the gains stay local. You&rsquo;ve added an AI interface to one system. Users talking to that interface can do things in that system. But most real business tasks don&rsquo;t live inside one system.</p>
+<p>A customer service workflow touches a CRM, an order management system, a returns platform, and probably a knowledge base. An analyst running a reporting workflow hits data warehouses, financial systems, and scheduling tools. The interesting work, the work where an AI reasoning layer actually changes what&rsquo;s possible, spans those boundaries.</p>
+<p>When you optimize app-by-app, you end up with a collection of isolated AI-augmented apps rather than a coherent reasoning layer. The model has partial context in each interaction. It can&rsquo;t coordinate across systems it doesn&rsquo;t know about. You&rsquo;ve made each app slightly better. You haven&rsquo;t changed what the domain can do.</p>
+<p>McKinsey&rsquo;s December 2024 analysis of AI-augmented IT modernization puts a number on what changes when you approach this differently: 40-50% faster modernization timelines and a 40% reduction in costs from technology debt. Those numbers come from client work, not a controlled study, so they carry the caveats that always come with consulting firm statistics. But the directional logic holds from what I&rsquo;ve seen: once you have a coherent reasoning layer spanning a domain, every workflow in that domain can benefit. The investment in the domain layer isn&rsquo;t paid back once. It compounds.</p>
+<h2 id="what-domain-level-actually-means-in-practice">What &ldquo;domain-level&rdquo; actually means in practice</h2>
+<p>A domain, in this context, is a bounded area of business activity with its own vocabulary, data, rules, and systems. Order management is a domain. Customer identity is a domain. Financial operations is a domain. Each has its own coherent set of capabilities that belong together.</p>
+<p>Building function calling at the domain level means designing your tool library around what the domain can do, not around what each application exposes. The functions represent business operations in the domain&rsquo;s own vocabulary. <code>get_customer_order_history</code> rather than <code>query_orders_db</code>. <code>cancel_and_rebook_reservation</code> rather than separate <code>cancel</code> and <code>book</code> calls that only make sense together.</p>
+<p>LangGraph&rsquo;s documentation makes the same point about agent design: &ldquo;an agent is more likely to succeed on a focused task than if it has to select from dozens of tools.&rdquo; The practical pattern it recommends is a router that classifies incoming requests and hands them to specialized subagents, each with a focused set of domain-appropriate tools. A billing agent, a logistics agent, a support agent, each with its own toolset, coordinated by a top-level orchestrator that knows which domain owns the problem.</p>
+<p>This is where MCP (Model Context Protocol) becomes infrastructure rather than tooling. Anthropic released MCP in November 2024 as an open standard for connecting LLMs to external tools and data sources. By end of 2025 it had 97M+ monthly SDK downloads, 10,000+ active public servers, and adoption from OpenAI, Google, Microsoft, and every major AI platform. In December 2025 Anthropic donated it to the Linux Foundation&rsquo;s Agentic AI Foundation, which is how you signal &ldquo;this is infrastructure, not product.&rdquo;</p>
+<p>What MCP does for domain design is provide a standardized way to register and discover the tools in a domain. Your domain&rsquo;s capabilities become discoverable by any agent that speaks MCP. The domain layer gets an interface contract, which means domain tool libraries can be built once and consumed across multiple agents and applications.</p>
+<h2 id="the-legacy-problem">The legacy problem</h2>
+<p>Here&rsquo;s where the concept runs into reality. Most enterprise domains aren&rsquo;t running clean microservices with well-defined APIs. They&rsquo;re running systems that have been accumulating logic for decades.</p>
+<p>Legacy codebases have functions that do ten things. Services that only work when called in a specific order that exists nowhere in documentation. Side effects embedded so deep in the call stack that nobody&rsquo;s sure what triggers them. APIs designed for a specific UI that assumes context no other caller would have.</p>
+<p>Expose that directly through function calling and you&rsquo;ll hit walls fast. The model can&rsquo;t reason reliably over unpredictable behavior. If calling function A sometimes also modifies state B in a way that depends on which other functions ran recently, the model has no basis for reasoning about that. It will make decisions that look correct based on the tool descriptions but fail in execution.</p>
+<p>The McKinsey report makes this point directly, in a way that&rsquo;s easy to miss: &ldquo;converting old code into modern tech languages simply transports your tech debt from a legacy system into a modern one.&rdquo; Wrapping legacy behavior in a function doesn&rsquo;t make that behavior LLM-friendly. The model gets an interface to chaos.</p>
+<p>What does work is the harder path. Break large functions into smaller, single-purpose units. A tool named <code>manage_customer_account</code> that handles fetching, updating, and deleting is worse than <code>get_customer_account</code>, <code>update_customer_contact_info</code>, and <code>close_customer_account</code>, even though it&rsquo;s more work to write. The model needs to select tools accurately from their descriptions. Atomic tools with unambiguous names make that selection tractable.</p>
+<p>Document intent, not just behavior. The description field on a function is how the model decides whether to call it. A description that says &ldquo;queries the accounts table&rdquo; is worse than one that says &ldquo;retrieves a customer&rsquo;s account details by customer ID, including contact information, account status, and associated order history.&rdquo; The model needs to understand what the function <em>accomplishes</em>, not just what it does technically.</p>
+<p>Test before you expose. You need confidence that changes to one function hold across the domain, not just for the service you just touched. In legacy systems with tangled dependencies, a change to one function often has effects elsewhere. You need test coverage broad enough to catch those ripples before they become production incidents that the model unknowingly triggers.</p>
+<p>Roll out incrementally. Don&rsquo;t rewire the entire domain at once. Start with the most stable, cleanest subsystem. Get the design right there. Build the patterns your team knows how to apply. Then expand.</p>
+<h2 id="what-makes-a-function-llm-friendly">What makes a function LLM-friendly</h2>
+<p>A few things matter most when designing tools for LLM consumption.</p>
+<p>Single responsibility: one function, one action. If it does more than one thing, split it.</p>
+<p>Verb-first naming. Names that describe the action: <code>search_inventory</code>, <code>calculate_refund_amount</code>, <code>send_confirmation_email</code>. Not <code>inventory_lookup</code> or <code>refund_calc</code>. The verb is how the model maps intent to tool.</p>
+<p>Flat, simple parameters. Deeply nested JSON input objects are hard for the model to construct correctly. Flatten where possible. If a parameter requires complex structure, consider whether the tool can handle that complexity internally.</p>
+<p>Consistent output schemas. The model needs to reason over tool results and pass them to other tools. If your tools return inconsistent structures (sometimes a list, sometimes a dict, sometimes an error in an unexpected format) the reasoning chain degrades.</p>
+<p>Honest error behavior. If the tool fails, return a structured error that tells the model what went wrong and whether it&rsquo;s retryable. The model needs to know whether to try again, try a different tool, or escalate.</p>
+<h2 id="infrastructure-work-not-integration-work">Infrastructure work, not integration work</h2>
+<p>The teams that approach function calling as an integration project (connect app X to the model) tend to get narrowly useful results. The model helps with things that live in app X.</p>
+<p>The teams that approach it as infrastructure work, building a domain reasoning layer that knows how to act across an entire bounded context, end up with something that compounds. Every new workflow in the domain gets the reasoning layer. Every improvement to the tool library benefits every agent that uses it. The investment is in the domain, and the domain is shared.</p>
+<p>That&rsquo;s a different kind of project. It takes longer to set up. It requires thinking about your domain&rsquo;s vocabulary and capabilities as a coherent design problem. It almost always surfaces ugly things about your legacy systems that you&rsquo;d rather not deal with.</p>
+<p>But it&rsquo;s the only version of this that changes what your domain can actually do, rather than just adding an AI interface to what it already could.</p>
+<p>The question isn&rsquo;t which app to connect next. It&rsquo;s which domain you&rsquo;re willing to build a real reasoning layer for.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>
