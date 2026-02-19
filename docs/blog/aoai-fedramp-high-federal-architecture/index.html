@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Compliance Gate Is Open. Now Build Actual Architecture. | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSZ056G71K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CSZ056G71K');
+</script>
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>The Compliance Gate Is Open. Now Build Actual Architecture.</h1>
+    
+      
+        <p class="post-date">February 19, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>When Azure OpenAI received its FedRAMP High Provisional Authorization to Operate from the Joint Authorization Board in August 2023, federal teams split between relief and wait-and-see. A year and a half later, the authorization mattered, but not for the reason most announcements made it sound.</p>
+<p>The headline was always compliance. The actual unlock was architecture.</p>
+<h2 id="what-the-p-ato-actually-gives-you">What the P-ATO actually gives you</h2>
+<p>The FedRAMP High JAB P-ATO covers the Azure OpenAI platform at the infrastructure level: roughly 410 NIST SP 800-53 controls across 18 control families. When an agency builds on Azure OpenAI, it inherits those controls from Microsoft. For a PaaS service like this, inheritance can cover 60% or more of your total control set.</p>
+<p>That&rsquo;s not nothing. A typical agency ATO built from scratch takes 12 to 18 months. Building on a FedRAMP High-authorized platform, with strong inheritance and a well-prepared System Security Plan, can compress that to six to twelve weeks in the best cases. You&rsquo;re not starting from zero on access control, system integrity, contingency planning, or a dozen other families that Microsoft has already had independently assessed by a 3PAO.</p>
+<p>But here&rsquo;s what the authorization doesn&rsquo;t give you: a free pass.</p>
+<p>Agencies still need their own Authority to Operate. They still need a Customer Responsibility Matrix that explicitly documents which controls are inherited and which are theirs. They still need to address their own data handling policies, application-layer security, and access management. For high-impact AI under OMB M-25-21, the kind that touches benefits determinations, enforcement decisions, or rights-impacting workflows, they need pre-deployment testing, impact assessments, and ongoing monitoring as well.</p>
+<p>The P-ATO cuts the runway. It doesn&rsquo;t eliminate it.</p>
+<h2 id="the-cross-cloud-architecture-nobody-explains-clearly">The cross-cloud architecture nobody explains clearly</h2>
+<p>What Azure Government agencies at IL4 and IL5 actually had to do to use Azure OpenAI is the more technically interesting piece, and it doesn&rsquo;t get enough coverage.</p>
+<p>Azure Government and Azure Commercial are physically and network-isolated environments. You cannot ExpressRoute-peer a Government VNet directly into Commercial. They&rsquo;re treated as distinct clouds, by design.</p>
+<p>So how does a DoD agency running at IL5 use Azure OpenAI, which until September 2024 only existed in Commercial?</p>
+<p>The answer involves Microsoft&rsquo;s global backbone network. The architecture works like this: the agency application and all government data stay in Azure Government. When a request is made to Azure OpenAI, the query travels from Azure Government over Microsoft&rsquo;s private backbone to the Commercial endpoint, never touching the public internet. The response comes back the same way. Microsoft maintains a zero-retention policy for these federal queries: no government data is stored or logged in the Commercial environment after the response is returned.</p>
+<p>The queries are just text. The data stays where it lives.</p>
+<p>In September 2024, Azure OpenAI (including GPT-4o) received its FedRAMP High authorization for Azure Government directly, plus DoD DISA IL4/IL5 provisional authorization. By January 2025, GPT-4o cleared for Top Secret (IL6) in Microsoft&rsquo;s government cloud. The cross-cloud architecture was a bridge that&rsquo;s now largely been superseded for most use cases; Azure Government agencies can call Azure OpenAI endpoints in their own environment directly. But the underlying pattern is worth understanding: AI inference sitting in a different trust boundary than your data, connected via a private backbone, shows up in other forms as architectures get more complex.</p>
+<h2 id="the-acceleration-is-real">The acceleration is real</h2>
+<p>I want to put some numbers behind what &ldquo;agencies are moving&rdquo; actually means, because the GAO report that&rsquo;s been cited in most coverage is more interesting than the headline.</p>
+<p>Across 11 federal agencies with publicly available use case inventories, generative AI use cases went from 32 in 2023 to 282 in 2024. That&rsquo;s a 9x increase in a single year. Total AI use cases, including traditional ML, predictive analytics, and NLP, nearly doubled from 571 to 1,110. Over 1,700 AI use cases were publicly disclosed across all agencies for 2024.</p>
+<p>These aren&rsquo;t pilots. The VA went from 1 generative AI use case in 2023 to 27 in 2024. The IRS has 61 active use cases. Treasury more than doubled its inventory.</p>
+<p>What&rsquo;s actually in those use cases matters more than the count. The IRS deployed a synthetic data engine to simulate fraud scenarios and test claims processing. OPM received an $18.3 million Technology Modernization Fund award in December 2024 for a two-year project to modernize its 40-year-old COBOL-based retirement system using AI. SSA is looking at options for its 60 million lines of COBOL that underpin retirement and disability claims processing.</p>
+<p>These are not chatbots on top of systems. These are systems-level interventions.</p>
+<h2 id="what-llms-as-middleware-actually-means">What &ldquo;LLMs as middleware&rdquo; actually means</h2>
+<p>LLMs moving from the surface layer into the integration layer is happening at exactly the places you&rsquo;d expect, given the constraints of federal IT.</p>
+<p>Federal agencies face a structural problem. Their most important data is locked in legacy systems that predate modern APIs by decades: COBOL on IBM mainframes, FORTRAN-based scientific workloads, legacy databases without REST interfaces. These systems work. They encode decades of business logic. And they&rsquo;re almost impossible to replace wholesale.</p>
+<p>Traditional middleware handled this by writing explicit rules: if this message type arrives, transform and route to this endpoint. ESBs, workflow engines, message brokers. The approach requires engineers who understand both sides of the integration and can maintain the routing logic as systems evolve. That&rsquo;s expensive, and the logic gets brittle.</p>
+<p>What changes with LLMs in the integration layer: you&rsquo;re replacing rule-based routing with reasoning. The LLM receives structured inputs, understands context, calls APIs on legacy systems, reconciles outputs from multiple sources, and produces a response or takes an action. You&rsquo;re not writing transformation rules. You&rsquo;re defining what the model needs to understand about each system it can call.</p>
+<p>For a claims processing workflow at VA or SSA, this might look like a model that queries multiple backend databases (medical records, benefit eligibility systems, payment history), understands a caseworker&rsquo;s question in natural language, retrieves relevant information, flags inconsistencies, and surfaces a recommendation with citation to the source records. The legacy systems don&rsquo;t change. The model mediates between them.</p>
+<p>OPM&rsquo;s COBOL modernization project takes a different approach: use AI to translate COBOL directly into Python or Java, then migrate to modern cloud infrastructure. The vendor will refactor and convert legacy retirement benefits and financial systems on IBM Mainframe using AI-assisted code translation, then rearchitect to a modern DBMS in OPM&rsquo;s Azure cloud. Both patterns, AI as mediating layer and AI as translation engine, are valid. They solve different problems, and they carry different risks.</p>
+<h2 id="where-the-hard-problems-actually-are">Where the hard problems actually are</h2>
+<h3 id="cobol-isnt-just-code">COBOL isn&rsquo;t just code</h3>
+<p>The 60 million lines of COBOL running SSA&rsquo;s claims processing systems represent decades of edge cases, regulatory changes, and fix-in-place logic that was never formally documented. An LLM-translated version of that code may silently discard or misinterpret edge cases that affect real benefit claimants in unusual situations. There&rsquo;s no comprehensive test suite to catch those errors, because legacy systems were never built with automated testing in mind.</p>
+<p>DOGE&rsquo;s stated plan to &ldquo;rewrite the SSA codebase in months&rdquo; misunderstands this as a software problem. It&rsquo;s a knowledge problem. Approximately 30% of SSA&rsquo;s CIO organization is retirement-eligible. The institutional knowledge walking out the door as those people leave is at least as important as the COBOL itself. Rushing LLM-assisted translation before that knowledge is captured and encoded into validation tests is how you build systems that look modern and fail silently.</p>
+<h3 id="the-ato-is-not-the-design">The ATO is not the design</h3>
+<p>FedRAMP 20x, announced by GSA in March 2025, promises to compress authorization from 18+ months to weeks via automation and commercial framework alignment. The first pilot participants achieved authorization in roughly three months. That&rsquo;s a real improvement.</p>
+<p>But faster compliance processing doesn&rsquo;t make the underlying architecture decisions easier. Where does the model sit relative to your data? What happens when a model returns an incorrect inference that affects a benefit determination? Who reviews high-impact AI decisions, and what does that review process look like technically? OMB M-25-21 requires pre-deployment testing and impact assessments for high-impact AI, with a compliance deadline of April 2026. Most agencies are still working out what &ldquo;pre-deployment testing&rdquo; means in practice for systems this complex.</p>
+<h3 id="testing-the-integration-layer">Testing the integration layer</h3>
+<p>The model itself is relatively well-understood. It has benchmark scores, safety evaluations, red team results. The hard part is testing what happens when the model calls a legacy API that returns an unexpected format, or when two source systems return inconsistent data, or when the prompt structure interacts badly with a specific class of inputs. That testing has to happen at the integration layer, and most agencies don&rsquo;t have mature frameworks for it yet.</p>
+<h2 id="what-im-actually-watching">What I&rsquo;m actually watching</h2>
+<p>FedRAMP 20x prioritization of AI cloud services is worth tracking. GSA has committed to expedited authorization for conversational AI systems with demonstrated agency demand and GSA Multiple Award Schedule presence. With the IL6 authorization going through in early 2025, the compliance ceiling for AI tools in government has effectively cleared for most use cases.</p>
+<p>The bottleneck shifted. It&rsquo;s now architecture, integration, and validation, not authorization.</p>
+<p>The teams making real progress treat the LLM as a component with defined inputs, outputs, and failure modes rather than a magic box placed at the end of a workflow. They build retrieval layers that connect the model to authoritative data sources. They work out what &ldquo;human in the loop&rdquo; means operationally before writing it into a policy document. They write system prompts that encode the specific business logic their domain requires, not generic instructions.</p>
+<p>The compliance gate is open. What gets built on the other side of it is the actual work.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>

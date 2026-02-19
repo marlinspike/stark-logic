@@ -6,8 +6,15 @@
     <description>Recent content in Home on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Compliance Gate Is Open. Now Build Actual Architecture.</title>
+      <link>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</link>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</guid>
+      <description>Azure OpenAI&amp;rsquo;s FedRAMP High P-ATO cleared the biggest compliance bottleneck federal AI teams faced. What comes after that clearance is harder, and most teams aren&amp;rsquo;t building it right.</description>
+    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
