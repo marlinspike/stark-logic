@@ -1,6 +1,6 @@
 ---
 title: "The Wrong First Question in Azure AI"
-date: 2026-02-19
+date: 2025-09-19
 summary: "The Responses API going GA in Azure AI Foundry isn't primarily a model story. It's a runtime architecture decision that most teams make too late."
 draft: false
 ---

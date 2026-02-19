@@ -6,15 +6,8 @@
     <description>Recent content in Home on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Wrong First Question in Azure AI</title>
-      <link>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</link>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</guid>
-      <description>The Responses API going GA in Azure AI Foundry isn&amp;rsquo;t primarily a model story. It&amp;rsquo;s a runtime architecture decision that most teams make too late.</description>
-    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
@@ -42,6 +35,13 @@
       <pubDate>Thu, 15 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://reuben.cleet.us/blog/from-pilot-to-operating-model/</guid>
       <description>88% of AI pilots never reach production. The ones that do share a pattern: they rebuild workflows from scratch instead of automating the old ones, and they treat the cultural shift as the actual work.</description>
+    </item>
+    <item>
+      <title>The Wrong First Question in Azure AI</title>
+      <link>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</link>
+      <pubDate>Fri, 19 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</guid>
+      <description>The Responses API going GA in Azure AI Foundry isn&amp;rsquo;t primarily a model story. It&amp;rsquo;s a runtime architecture decision that most teams make too late.</description>
     </item>
     <item>
       <title>About</title>
