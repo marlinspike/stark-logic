@@ -27,4 +27,6 @@ Only publish one post at a time.
 
 5. **Build**: Run `hugo` to rebuild the site into `docs/`.
 
-6. **Confirm**: Let the user know the post is now live and included in the build.
+6. **Commit and push**: Stage the published post file and the rebuilt `docs/` folder, then commit with a message like `Publish: <post title>` and push to the remote.
+
+7. **Confirm**: Let the user know the post is live and has been pushed.

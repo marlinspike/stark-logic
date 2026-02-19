@@ -6,8 +6,15 @@
     <description>Recent content in Blog on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Wrong First Question in Azure AI</title>
+      <link>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</link>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/azure-ai-runtime-decisions-responses-api/</guid>
+      <description>The Responses API going GA in Azure AI Foundry isn&amp;rsquo;t primarily a model story. It&amp;rsquo;s a runtime architecture decision that most teams make too late.</description>
+    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
