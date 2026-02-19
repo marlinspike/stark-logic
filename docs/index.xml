@@ -6,15 +6,8 @@
     <description>Recent content in Home on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Stop Wiring Apps Together. Build a Domain Reasoning Layer Instead.</title>
-      <link>https://reuben.cleet.us/blog/function-calling-domain-reasoning-layer/</link>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://reuben.cleet.us/blog/function-calling-domain-reasoning-layer/</guid>
-      <description>Most teams using AI function calling are optimizing at the wrong level. The wins aren&amp;rsquo;t app-by-app; they&amp;rsquo;re domain-wide. Here&amp;rsquo;s what that actually means, why legacy systems make it hard, and how the infrastructure is catching up.</description>
-    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
@@ -56,6 +49,13 @@
       <pubDate>Sat, 12 Jul 2025 00:00:00 +0000</pubDate>
       <guid>https://reuben.cleet.us/blog/ato-security-theater-swift/</guid>
       <description>The traditional DoD ATO process was sold as a security control. It was actually a snapshot, useful once and immediately aging. SWIFT changes the fundamental model, and the industry response tells you everything about how ready the field is.</description>
+    </item>
+    <item>
+      <title>Stop Wiring Apps Together. Build a Domain Reasoning Layer Instead.</title>
+      <link>https://reuben.cleet.us/blog/function-calling-domain-reasoning-layer/</link>
+      <pubDate>Tue, 04 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/function-calling-domain-reasoning-layer/</guid>
+      <description>Most teams using AI function calling are optimizing at the wrong level. The wins aren&amp;rsquo;t app-by-app; they&amp;rsquo;re domain-wide. Here&amp;rsquo;s what that actually means, why legacy systems make it hard, and how the infrastructure is catching up.</description>
     </item>
     <item>
       <title>About</title>

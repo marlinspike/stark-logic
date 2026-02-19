@@ -1,6 +1,6 @@
 ---
 title: "Stop Wiring Apps Together. Build a Domain Reasoning Layer Instead."
-date: 2026-02-19
+date: 2025-02-04
 summary: "Most teams using AI function calling are optimizing at the wrong level. The wins aren't app-by-app; they're domain-wide. Here's what that actually means, why legacy systems make it hard, and how the infrastructure is catching up."
 draft: false
 ---
