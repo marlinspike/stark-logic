@@ -1,6 +1,6 @@
 ---
 title: "An 18-Month ATO Doesn't Make Software Secure. Here's What Does."
-date: 2026-02-19
+date: 2025-07-12
 summary: "The traditional DoD ATO process was sold as a security control. It was actually a snapshot, useful once and immediately aging. SWIFT changes the fundamental model, and the industry response tells you everything about how ready the field is."
 draft: false
 ---

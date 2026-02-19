@@ -6,15 +6,8 @@
     <description>Recent content in Home on Reuben Cleetus</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 18 Feb 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://reuben.cleet.us/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>The Compliance Gate Is Open. Now Build Actual Architecture.</title>
-      <link>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</link>
-      <pubDate>Thu, 19 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</guid>
-      <description>Azure OpenAI&amp;rsquo;s FedRAMP High P-ATO cleared the biggest compliance bottleneck federal AI teams faced. What comes after that clearance is harder, and most teams aren&amp;rsquo;t building it right.</description>
-    </item>
     <item>
       <title>Git as the Shared Brain: My Hybrid Agentic Dev Workflow</title>
       <link>https://reuben.cleet.us/blog/git-shared-brain-agentic-workflow/</link>
@@ -63,6 +56,13 @@
       <pubDate>Tue, 04 Feb 2025 00:00:00 +0000</pubDate>
       <guid>https://reuben.cleet.us/blog/function-calling-domain-reasoning-layer/</guid>
       <description>Most teams using AI function calling are optimizing at the wrong level. The wins aren&amp;rsquo;t app-by-app; they&amp;rsquo;re domain-wide. Here&amp;rsquo;s what that actually means, why legacy systems make it hard, and how the infrastructure is catching up.</description>
+    </item>
+    <item>
+      <title>The Compliance Gate Is Open. Now Build Actual Architecture.</title>
+      <link>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</link>
+      <pubDate>Sat, 20 Apr 2024 00:00:00 +0000</pubDate>
+      <guid>https://reuben.cleet.us/blog/aoai-fedramp-high-federal-architecture/</guid>
+      <description>Azure OpenAI&amp;rsquo;s FedRAMP High P-ATO cleared the biggest compliance bottleneck federal AI teams faced. What comes after that clearance is harder, and most teams aren&amp;rsquo;t building it right.</description>
     </item>
     <item>
       <title>About</title>

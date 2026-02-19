@@ -1,6 +1,6 @@
 ---
 title: "The Compliance Gate Is Open. Now Build Actual Architecture."
-date: 2026-02-19
+date: 2024-04-20
 summary: "Azure OpenAI's FedRAMP High P-ATO cleared the biggest compliance bottleneck federal AI teams faced. What comes after that clearance is harder, and most teams aren't building it right."
 draft: false
 ---
