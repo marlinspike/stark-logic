@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Work Between Systems | Reuben Cleetus</title>
+<meta name="description" content="Personal site of Reuben Cleetus — C-level AI executive with deep technical expertise.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/css/style.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CSZ056G71K"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-CSZ056G71K');
+</script>
+
+</head>
+<body>
+  <nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">Reuben Cleetus</a>
+    <ul class="nav-links">
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/about/">About</a></li>
+      
+        <li><a href="/blog/">Blog</a></li>
+      
+        <li><a href="/contact/">Contact</a></li>
+      
+    </ul>
+  </div>
+</nav>
+
+  <main class="container">
+    
+<article>
+  <header class="page-header">
+    <h1>The Work Between Systems</h1>
+    
+      
+        <p class="post-date">March 24, 2026</p>
+      
+    
+  </header>
+  <div class="content">
+    <p>There&rsquo;s a description I keep coming back to when I think about how knowledge work actually operates inside large organizations: the human as interface.</p>
+<p>Not as decision-maker. Not as analyst. As interface — the person manually bridging the gap between systems that don&rsquo;t talk to each other, pulling a report from one tool, cross-referencing it against something in another, opening a third tab to check context that lives in neither, and then synthesizing all of it in their head before they can do anything useful with it.</p>
+<p>This is the daily reality for a lot of knowledge workers. Asana&rsquo;s Anatomy of Work Index (a survey of over 13,000 knowledge workers across eight countries) found that more than 60% of the workday goes to what they call &ldquo;work about work&rdquo;: chasing status updates, searching for information, switching contexts, sitting in meetings to relay what one system knows to people who use a different one. That&rsquo;s not a productivity problem. The workers aren&rsquo;t slow or disorganized. The underlying systems just weren&rsquo;t built to share context, and someone has to carry it.</p>
+<p>The framing that keeps getting used to describe this is &ldquo;systems of record.&rdquo; We&rsquo;ve built excellent systems of record. Salesforce knows your customers. Workday knows your headcount. ServiceNow knows your tickets. But knowing, in each of those systems, is siloed. The reasoning that connects them — the judgment call about what a pattern in the customer data means for a staffing decision, or what a cluster of tickets implies about a product&rsquo;s stability — has always lived outside the software. In the analyst&rsquo;s head. In the email thread. In the meeting where someone who knew both systems happened to be in the room.</p>
+<h2 id="why-software-never-captured-this-work">Why software never captured this work</h2>
+<p>There&rsquo;s a deeper explanation for why this connective tissue never made it into systems. The problem isn&rsquo;t just technical. It&rsquo;s a representability problem.</p>
+<p>Michael Polanyi gave the clearest articulation of it in 1966: &ldquo;We can know more than we can tell.&rdquo; His concept of tacit knowledge — the kind of expertise that can&rsquo;t be fully verbalized, the judgment that a skilled professional exercises without being able to write down the rules — is precisely what traditional software can&rsquo;t encode. To build a system that does something, you have to be able to specify what it should do. For a large class of knowledge work, that specification is impossible, not just difficult. The expert doesn&rsquo;t know the rules they&rsquo;re applying. They know the outcome when they see it.</p>
+<p>David Autor called the practical implication of this &ldquo;Polanyi&rsquo;s Paradox&rdquo; in a 2014 NBER paper: computers substitute well for workers doing routine, codifiable tasks and amplify the value of workers doing everything else. The tasks requiring &ldquo;flexibility, judgment, and common sense&rdquo; proved hardest to automate because you can&rsquo;t reduce them to conditionals.</p>
+<p>Robotic Process Automation tried. RPA treats software interfaces the way humans use them — click this button, copy this field, paste it here — and it works for exactly that. Fixed layouts, structured data, deterministic rules. The canonical failure mode: change the vendor&rsquo;s invoice template slightly and the bot breaks. Not because the information changed in any meaningful way, but because the system was mimicking physical steps rather than understanding the task. Industry studies consistently put RPA failure rates above 80% without AI augmentation. The tasks where RPA fails are the ones where judgment is required: unstructured inputs, exception handling, decisions that depend on context the bot doesn&rsquo;t have.</p>
+<p>The CSCW research community has studied the invisible version of this problem since the early 1990s under the name &ldquo;articulation work&rdquo; — the meta-level coordination labor required to make collaborative work happen, the kind that shows up in no formal workflow. Leigh Star and Anselm Strauss documented it: the informal, in-between activity that holds distributed work systems together but appears in no system of record. It&rsquo;s been there the whole time, unmeasured and unrepresented, because we had no way to represent it.</p>
+<h2 id="whats-actually-changed">What&rsquo;s actually changed</h2>
+<p>The reason this is worth revisiting now isn&rsquo;t that the problem is new. It&rsquo;s that the tools available to address it are.</p>
+<p>What language models introduced, and what agentic systems are starting to make useful, is the ability to operate on unstructured information at scale. Not to execute a fixed sequence of steps, but to reason across disparate sources, synthesize context, and make judgments under ambiguity. That&rsquo;s the capability that was always missing from the automation stack.</p>
+<p>Vendors are now calling this a &ldquo;reasoning layer&rdquo; — software that sits above systems of record, pulls from multiple sources, and applies inference to connect what they individually know. Salesforce calls it the Atlas Reasoning Engine. ServiceNow built a domain-specific reasoning model with NVIDIA. Glean built it as a knowledge graph that supports multi-step agent queries across the full enterprise SaaS stack. The implementations differ, but the structural insight is the same: the intelligence needs to live somewhere above the data stores, able to see across them, rather than inside any one of them.</p>
+<p>This isn&rsquo;t replacing systems of record. It&rsquo;s building what was always missing: the layer that can do the work the human was doing between them.</p>
+<p>The distinction from RPA matters. RPA automates tasks — it executes steps. A reasoning layer automates decisions; it handles what to do and why, not just the mechanical sequence of doing it. That&rsquo;s a different category of software, and it&rsquo;s a category that didn&rsquo;t really exist before.</p>
+<h2 id="where-this-gets-hard-the-public-sector-case">Where this gets hard: the public sector case</h2>
+<p>If you want to see the full weight of this problem, look at government.</p>
+<p>The GAO&rsquo;s most recent assessment of federal IT found that 79% of the $337 billion annual federal IT budget — roughly $83 billion — goes to operating and maintaining existing systems, not modernizing them. The IRS still runs applications written in COBOL that are over 60 years old. The FAA has 105 of 138 legacy air traffic control systems flagged as unsustainable. These aren&rsquo;t edge cases. They&rsquo;re the norm.</p>
+<p>The consequence is that data silos are deeply entrenched. Information lives in systems that don&rsquo;t interoperate, built to different standards, owned by different agencies, sometimes running on infrastructure that lacks modern APIs entirely. The people who need to reason across these systems — epidemiologists tracking outbreak patterns, analysts building situational awareness across multiple data streams — are doing the integration work manually. They&rsquo;re the interface.</p>
+<p>This is the environment we&rsquo;ve been working in with AI Greenhouse. A recent engagement with the CDC&rsquo;s Public Health Informatics Office, alongside partners at Booz Allen, put this directly in focus. CDC&rsquo;s data landscape involves case reports, laboratory results, demographic data, and signals from emergency departments, spread across systems with different standards, different cadences, and historically limited interoperability. The work of getting from raw data to a useful epidemiological picture has always required human analysts to bridge those gaps.</p>
+<p>What made the CDC engagement meaningful wasn&rsquo;t deploying a chat interface or automating a report. It was getting specific about which parts of the analyst&rsquo;s work were the stitching — the connective tissue that existed only in their head — and whether we could encode any of that reasoning computationally. Not fully replace it. Identify the parts that were tedious rather than expert, and take those off the plate so the actual expertise could go further.</p>
+<p>Booz Allen&rsquo;s position here is structural: they hold the $1.7 billion CDC Data Modernization Accelerator contract, making them the delivery partner for the infrastructure that PHIO and OPHDST are building toward. When the data infrastructure evolves, the reasoning capabilities that can run on top of it evolve with it. The two have to move together.</p>
+<h2 id="the-part-that-isnt-automation">The part that isn&rsquo;t automation</h2>
+<p>Here&rsquo;s where I&rsquo;d push back on how this is usually framed.</p>
+<p>The dominant narrative around AI in knowledge work is about efficiency: do the same work faster, reduce headcount, improve throughput. In high-stakes domains, that&rsquo;s the wrong goal.</p>
+<p>The analysts at the CDC doing outbreak surveillance aren&rsquo;t primarily slow. The bottleneck isn&rsquo;t their typing speed or the time it takes to generate a table. The bottleneck is the 60-70% of their time going to work that isn&rsquo;t analysis — tracking down data that lives in a different system, reconciling formats that don&rsquo;t match, pulling together the context required to even start asking the right question. That&rsquo;s the stitching work. That belongs to the software layer, not the epidemiologist.</p>
+<p>When you offload that, you don&rsquo;t get a slightly faster version of what you had before. You get the analyst focused entirely on the part that actually requires an expert: interpreting the signal, seeing the pattern that doesn&rsquo;t fit the model, making the call that determines whether something is a local anomaly or the beginning of something larger. That judgment isn&rsquo;t going away, and in public health contexts, getting more of it applied in the right places has consequences that don&rsquo;t show up in a productivity metric.</p>
+<p>This is the framing I keep coming back to when I describe what AI Greenhouse is trying to do. Not automation as a replacement for expertise. Automation as the infrastructure that makes expertise go further, by clearing the path of everything that was consuming it unnecessarily.</p>
+<h2 id="what-this-requires-in-practice">What this requires in practice</h2>
+<p>There&rsquo;s a practical constraint that gets underestimated. You can&rsquo;t build a reasoning layer on top of data that isn&rsquo;t accessible, isn&rsquo;t trusted, or isn&rsquo;t semantically coherent.</p>
+<p>The 60% of work time lost to coordination doesn&rsquo;t exist in a vacuum — it exists because the underlying data infrastructure is fragmented. Before an AI system can reason across disparate sources, those sources need to be connected in some way, even loosely. Before an agent can synthesize context, the context has to be findable. Building a reasoning layer and doing data modernization aren&rsquo;t sequential steps. Every increment of better data infrastructure expands the surface area where reasoning can operate.</p>
+<p>In government contexts, where the legacy constraints are most severe, the path forward looks less like deploying a single AI product and more like progressive capability-building: identify where the manual synthesis work is concentrated, connect the specific data sources that feed it, and bring a reasoning layer in on top of that specific slice. Not a grand unified platform. Narrow, high-value interventions that build trust incrementally and demonstrate that the reasoning layer can be held accountable.</p>
+<p>The operational discipline around how you do this in high-stakes environments with real legacy constraints is still early. But the framing is right: the goal is encoding the reasoning that connects systems, not just the steps between them.</p>
+<p>The work that was never representable in software — the judgment work, the synthesis work, the work between systems — that&rsquo;s what we&rsquo;re finally getting traction on.</p>
+
+  </div>
+</article>
+
+  </main>
+  <footer class="footer">
+  &copy; 2026 Reuben Cleetus
+</footer>
+
+</body>
+</html>
